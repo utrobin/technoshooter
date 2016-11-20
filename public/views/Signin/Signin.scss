@@ -1,0 +1,30 @@
+.signin{
+  margin: auto;
+  width: 308px;
+  &__form{
+    padding: 15px;
+    padding-top: 0;
+    margin-top: 18px;
+  }
+  &__title{
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    text-align: center;
+    display: block;
+    color: #fff;
+  }
+  &__link{
+    margin-top: 18px;
+    padding: 15px;
+    font-size: 14px;
+    text-align: center;
+    &__a{
+      color: rgb(255, 128, 171);
+      text-decoration: none;
+    }
+    &__a:hover{
+      text-decoration: underline;
+    }
+  }
+}

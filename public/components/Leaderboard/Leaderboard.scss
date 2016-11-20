@@ -1,0 +1,17 @@
+.table{
+  &__th{
+    &_middle{
+      text-align: center!important;
+    }
+    &_left{
+      text-align: left!important;
+    }
+    &_right{
+      text-align: right!important;
+    }
+  }
+  &__tr:hover {
+    background: rgba(255, 255, 255, 0.298039);
+    cursor: pointer;
+  }
+}

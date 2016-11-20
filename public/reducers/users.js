@@ -1,39 +1,32 @@
-const todo = (state, action) => {
+const user = (state, action) => {
   switch (action.type) {
-    case 'ADD_TODO':
+    case 'ADD_USER':
       return {
         id: action.id,
         text: action.text,
-        completed: false
-      }
-    case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state
-      }
-
-      return Object.assign({}, state, {
-        completed: !state.completed
-      })
-
+        rating: action.rating
+      };
     default:
       return state
   }
-}
+};
 
-const todos = (state = [], action) => {
+const users = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_TODO':
+    case 'GET_USERS':
       return [
         ...state,
-        todo(undefined, action)
-      ]
-    case 'TOGGLE_TODO':
-      return state.map(t =>
-        todo(t, action)
-      )
+        {id: 1, login: "Ваня", rating: 3434},
+        {id: 2, login: "Ванgfgя", rating: 343434}
+      ];
+    case 'ADD_USER':
+      return [
+        ...state,
+        user(undefined, action)
+      ];
     default:
       return state
   }
-}
+};
 
-export default todos
+export default users;

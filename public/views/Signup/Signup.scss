@@ -1,0 +1,17 @@
+.signup{
+  margin: auto;
+  width: 308px;
+  &__form{
+    padding: 15px;
+    padding-top: 0;
+    margin-top: 18px;
+  }
+  &__title{
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    text-align: center;
+    display: block;
+    color: #fff;
+  }
+}
