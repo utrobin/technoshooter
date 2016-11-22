@@ -1,18 +1,20 @@
 import { connect } from 'react-redux';
-import Leaderboard from '../components/Leaderboard/Leaderboard';
-import { getUsers } from '../actions/index'
+import Leaderboard from '../views/Leaderboard/Leaderboard';
+import { getUsers } from '../actions/index';
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    users: state.users
+    users: state.users,
+    page: state.page,
+    amountPage: state.amountPage,
+    preloader: state.preloader,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUsers: () => {
-      dispatch(getUsers())
+    getUsers: (data) => {
+      dispatch(getUsers(data))
     }
   }
 };

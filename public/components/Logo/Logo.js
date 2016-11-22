@@ -1,7 +1,7 @@
 import React from 'react';
 import HardwareVideogameAsset from 'material-ui/svg-icons/hardware/videogame-asset';
 import { Link } from 'react-router'
-import {cyan700, pinkA100} from 'material-ui/styles/colors';
+import {cyan700, cyan800 } from 'material-ui/styles/colors';
 
 import './Logo.scss';
 
@@ -16,7 +16,7 @@ const Logo = () => (
     <HardwareVideogameAsset
       style={iconStyles}
       color={cyan700}
-      hoverColor={pinkA100}
+      hoverColor={cyan800}
       className="logo"
     />
   </Link>

@@ -1,4 +1,5 @@
-let nextTodoId = 0
+import fetch from 'isomorphic-fetch';
+
 export const addUsers = (data) => {
   return {
     type: 'ADD_USER',
@@ -6,21 +7,35 @@ export const addUsers = (data) => {
   }
 };
 
-export const getUsers = () => {
-  return dispatch => {
-    fetch('/api/best?page=1')
-      .then(function(response) {
-        dispatch(addUsers("gfg"));
-        console.log(response);
-        return response.json();
-      })
-      .catch( alert );
+export const amountPage = (page) => {
+  return {
+    type: 'AMOUNT_PAGE',
+    page
   }
 };
 
-export const toggleTodo = (id) => {
+export const addPage = () => {
   return {
-    type: 'TOGGLE_TODO',
-    id
+    type: 'ADD_PAGE',
   }
-}
+};
+
+export const togglePreloader = () => {
+  return {
+    type: 'TOGGLE',
+  }
+};
+
+export const getUsers = (page) => {
+  return (dispatch) => {
+    dispatch(togglePreloader());
+    fetch(`/api/best?page=${page}`)
+      .then(response => response.json())
+      .then(data => {
+        dispatch(addPage());
+        dispatch(amountPage(data.pages));
+        dispatch(addUsers(data.users));
+        dispatch(togglePreloader());
+      })
+  }
+};

@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 
 import './Signin.scss';
 
-const Signin = () => (
+const Signin = ({ error, addUsers }) => (
   <div className="signin">
     <Logo />
     <h1 className="signin__title">Sign in to TechnoShooter</h1>
@@ -31,7 +31,10 @@ const Signin = () => (
             ],
             controls: {
                 name: 'Sign in'
-            }
+            },
+            action: addUsers,
+            error: error,
+            url: '/api/login'
           }
         }
       />

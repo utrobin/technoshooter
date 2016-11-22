@@ -1,18 +1,20 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import gameApp from './reducers/index';
+import configureStore from './reducers/configureStore';
+import isAuth from './tools/isAuth';
 
-import Signin from './views/Signin/Signin';
-import Signup from './views/Signup/Signup';
-import Rating from './views/Rating/Rating';
+import App from './tools/App';
+import SigninUser from './containers/Signin';
+import SignupUser from './containers/Signup';
+import Leaderbord from './containers/Leaderboard';
 import Main from './views/Main/Main';
+import Error404 from './views/404/404';
 
 import './css/reset.scss';
 import './css/main.scss';
@@ -20,22 +22,27 @@ import './css/main.scss';
 let injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
-let store = createStore(gameApp);
+const store = configureStore();
 
-const App = () => (
+isAuth(store.dispatch);
+
+const Application = () => (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <Router history={browserHistory}>
-        <Route path="/signin" component={Signin} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/leaderboard" component={Rating}/>
-        <Route path="/" component={Main}/>
+        <Route path="/" component={App}>
+          <IndexRoute component={Main} />
+          <Route path="/signin" component={SigninUser} />
+          <Route path="/signup" component={SignupUser} />
+          <Route path="/leaderboard" component={Leaderbord} />
+          <Route path="" component={Error404} />
+        </Route>
       </Router>
     </MuiThemeProvider>
   </Provider>
 );
 
 render(
-  <App />,
+  <Application />,
   document.querySelector('.content')
 );
