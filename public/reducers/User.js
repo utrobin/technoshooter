@@ -1,23 +1,3 @@
-// export const page = (state = 1, action) => {
-//   switch (action.type) {
-//     case 'ADD_PAGE':
-//       console.log(action);
-//       return ++state;
-//     default:
-//       return state
-//   }
-// };
-//
-// export const amountPage = (state = 10, action) => {
-//   switch (action.type) {
-//     case 'AMOUNT_PAGE':
-//       console.log(action, "тут");
-//       return action.page;
-//     default:
-//       return state
-//   }
-// };
-//
 export const authentification  = (state = null, action) => {
   switch (action.type) {
     case 'IS_AUTH':
@@ -27,10 +7,28 @@ export const authentification  = (state = null, action) => {
   }
 };
 
-export const error = (state = "", action) => {
+export const errorSignup = (state = "", action) => {
   switch (action.type) {
     case 'ADD_ERROR_SIGNUP':
       return action.error;
+    default:
+      return state
+  }
+};
+
+export const errorSignin = (state = "", action) => {
+  switch (action.type) {
+    case 'ADD_ERROR_SIGNIN':
+      return action.error;
+    default:
+      return state
+  }
+};
+
+export const user = (state = {}, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return action.user;
     default:
       return state
   }

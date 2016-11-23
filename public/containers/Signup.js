@@ -4,14 +4,14 @@ import { addUsers } from '../actions/User';
 
 const mapStateToProps = (state) => {
   return {
-    error: state.error,
+    error: state.errorSignup,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addUsers: (data, url) => {
-      dispatch(addUsers(data, url))
+      dispatch(addUsers(data, url, "SIGNUP"))
     }
   }
 };

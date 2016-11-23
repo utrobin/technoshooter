@@ -10,6 +10,9 @@ const Signin = ({ error, addUsers }) => (
   <div className="signin">
     <Logo />
     <h1 className="signin__title">Sign in to TechnoShooter</h1>
+    <Paper zDepth={3}>
+      {error !== "" ? <span className="signin__form__error">{error}</span> : ""}
+    </Paper>
     <Paper zDepth={3} className="signin__form">
       <Form
         data={

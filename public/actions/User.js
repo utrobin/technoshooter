@@ -1,21 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-// export const addUsers = (data) => {
-//   return {
-//     type: 'ADD_USER',
-//     data
-//   }
-// };
-//
-// export const amountPage = (page) => {
-//   return {
-//     type: 'AMOUNT_PAGE',
-//     page
-//   }
-// };
-//
 export const auth = (value) => {
-  console.log(value)
   return {
     type: 'IS_AUTH',
     value
@@ -29,7 +14,21 @@ export const addErrorSignup = (error) => {
   }
 };
 
-export const addUsers = (formData, url) => {
+export const addErrorSignin = (error) => {
+  return {
+    type: 'ADD_ERROR_SIGNIN',
+    error
+  }
+};
+
+export const login = (user) => {
+  return {
+    type: 'LOGIN',
+    user
+  }
+};
+
+export const addUsers = (formData, url, where) => {
   return (dispatch) => {
 
     if (formData.password1 !== undefined) {
@@ -48,23 +47,17 @@ export const addUsers = (formData, url) => {
     })
       .then(response => {return response.json()})
       .then(data => {
-        console.log(data);
+        if (data.code !== undefined) {
+          if (where === "SIGNUP") {
+            dispatch(addErrorSignup(data.reason));
+          }
+          else if (where === "SIGNIN") {
+            dispatch(addErrorSignin(data.reason));
+          }
+          return;
+        }
+        dispatch(login(data));
+        dispatch(auth(true));
       });
-
-
-    // const result = this.send(this.urlSignup, formData, 'POST');
-    // const obj = JSON.parse(result);
-    //
-    // if (typeof (obj.login) === 'undefined') {
-    //   addMessage('', false);
-    //   addMessageError(obj.reason, true);
-    // } else {
-    //   this.user.login = obj.login;
-    //   this.user.email = obj.email;
-    //
-    //   router.go('/');
-    // }
   };
-  // dispatch(togglePreloader());
-
 };

@@ -11,7 +11,7 @@ const Signup = ({ error, addUsers }) => (
     <Logo />
     <h1 className="signup__title">Sign up to TechnoShooter</h1>
     <Paper zDepth={3}>
-      {error.type === "MESSAGE" ? <span className="signup__form__error">{error.message}</span> : ""}
+      {error !== "" ? <span className="signup__form__error">{error}</span> : ""}
     </Paper>
     <Paper zDepth={3} className="signup__form">
       <Form
