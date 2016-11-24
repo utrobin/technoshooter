@@ -13,11 +13,20 @@
     text-align: center;
     display: block;
     color: #fff;
+    margin-bottom: 10px;
   }
   &__button{
     margin-top: 15px;
   }
   &__link{
     display: block;
+  }
+  &__message{
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+    display: block;
+    color: #fff;
+    padding: 15px;
   }
 }

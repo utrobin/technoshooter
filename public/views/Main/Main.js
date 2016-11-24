@@ -2,35 +2,66 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Logo from '../../components/Logo/Logo';
 import { browserHistory } from 'react-router';
+import Paper from 'material-ui/Paper';
 
 import './Main.scss';
 
-const Main = () => (
+const Main = ({ signout, auth, error }) => (
   <div className="main">
     <Logo />
     <h1 className="main__title">TechnoShooter</h1>
-      <RaisedButton
-        className="main__button"
-        label="Sign in"
-        primary={true}
-        onTouchTap={() => {browserHistory.push('/signin')}}
-        fullWidth={true}
-      />
-    <RaisedButton
-      className="main__button"
-      label="Sign up"
-      primary={true}
-      fullWidth={true}
-      onTouchTap={() => {browserHistory.push('/signup')}}
-    />
-    <RaisedButton
-      className="main__button"
-      label="Leaderboard"
-      primary={true}
-      fullWidth={true}
-      onTouchTap={() => {browserHistory.push('/leaderboard')}}
-    />
-  </div>
+    {
+      auth ? (
+        <div>
+          <RaisedButton
+            className="main__button"
+            label="SinglePlayer"
+            primary={true}
+            onTouchTap={() => {browserHistory.push('/signin')}}
+            fullWidth={true}
+          />
+          <RaisedButton
+            className="main__button"
+            label="Leaderboard"
+            primary={true}
+            fullWidth={true}
+            onTouchTap={() => {browserHistory.push('/leaderboard')}}
+          />
+          <RaisedButton
+            className="main__button"
+            label="Sign out"
+            primary={true}
+            fullWidth={true}
+            onTouchTap={() => { signout() }}
+          />
+        </div>
+      ) : (
+        <div>
+          <RaisedButton
+            className="main__button"
+            label="Sign in"
+            primary={true}
+            onTouchTap={() => {browserHistory.push('/signin')}}
+            fullWidth={true}
+          />
+          <RaisedButton
+            className="main__button"
+            label="Sign up"
+            primary={true}
+            fullWidth={true}
+            onTouchTap={() => {browserHistory.push('/signup')}}
+          />
+          <RaisedButton
+            className="main__button"
+            label="Leaderboard"
+            primary={true}
+            fullWidth={true}
+            onTouchTap={() => {browserHistory.push('/leaderboard')}}
+          />
+        </div>
+      )
+    }
+    </div>
 );
 
 export default Main;

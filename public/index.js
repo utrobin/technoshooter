@@ -9,11 +9,11 @@ import { Provider } from 'react-redux';
 import configureStore from './reducers/configureStore';
 import isAuth from './tools/isAuth';
 
-import App from './tools/App';
+import Preloader from './views/Preloader/Preloader';
 import SigninUser from './containers/Signin';
 import SignupUser from './containers/Signup';
 import Leaderbord from './containers/Leaderboard';
-import Main from './views/Main/Main';
+import MainPage from './containers/Main';
 import Error404 from './views/404/404';
 
 import './css/reset.scss';
@@ -30,12 +30,12 @@ const Application = () => (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <Router history={browserHistory}>
-        <Route path="/" component={App}>
-          <IndexRoute component={Main} />
-          <Route path="/signin" component={SigninUser} />
-          <Route path="/signup" component={SignupUser} />
-          <Route path="/leaderboard" component={Leaderbord} />
-          <Route path="" component={Error404} />
+        <Route path="/" component={Preloader}>
+          <IndexRoute component={MainPage} />
+          <Route path="signin" component={SigninUser} />
+          <Route path="signup" component={SignupUser} />
+          <Route path="leaderboard" component={Leaderbord} />
+          <Route path="*" component={Error404} />
         </Route>
       </Router>
     </MuiThemeProvider>

@@ -1,0 +1,15 @@
+.Wrapper{
+  &__preloader{
+    text-align: center;
+    margin-top: calc(50vh - 100px);
+  }
+}
+.dialogMessage{
+  font-size: 24px;
+  font-weight: 500;
+  &__name{
+    text-transform: capitalize;
+    color: rgb(0, 151, 167);
+    font-style: italic;
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../actions/User';
+import { auth, login } from '../actions/User';
 
 const isAuth = (dispatch) => {
   fetch('/api/isauth', {
@@ -8,6 +8,11 @@ const isAuth = (dispatch) => {
   })
     .then(response => {return response.json()})
     .then(data => {
+      let user = localStorage.getItem('user');
+      if (user !== undefined) {
+        dispatch(login(JSON.parse(data)));
+      }
+
       dispatch(auth(data))
     });
 };

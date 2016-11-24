@@ -5,13 +5,15 @@ import { addUsers } from '../actions/User';
 const mapStateToProps = (state) => {
   return {
     error: state.errorSignup,
+    user: state.user,
+    auth: state.authentification,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addUsers: (data, url) => {
-      dispatch(addUsers(data, url, "SIGNUP"))
+    addUsers: (formData, url, where, message) => {
+      dispatch(addUsers(formData, url, where, message))
     }
   }
 };

@@ -1,5 +1,7 @@
 export const authentification  = (state = null, action) => {
   switch (action.type) {
+    case 'RESET_AUTH':
+      return false;
     case 'IS_AUTH':
       return action.value;
     default:
@@ -27,6 +29,8 @@ export const errorSignin = (state = "", action) => {
 
 export const user = (state = {}, action) => {
   switch (action.type) {
+    case 'SIGNOUT':
+      return {};
     case 'LOGIN':
       return action.user;
     default:

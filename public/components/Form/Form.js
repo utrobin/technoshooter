@@ -125,7 +125,7 @@ export default class Form extends React.Component {
       return;
     }
 
-    this.props.data.action(formData, this.props.data.url);
+    this.props.data.action(formData, this.props.data.url, this.props.data.type, this.props.data.message);
   }
 
   render() {
