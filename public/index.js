@@ -8,12 +8,14 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
 import configureStore from './reducers/configureStore';
 import isAuth from './tools/isAuth';
+import './tools/sw/index';
 
 import Preloader from './views/Preloader/Preloader';
 import SigninUser from './containers/Signin';
 import SignupUser from './containers/Signup';
 import Leaderbord from './containers/Leaderboard';
 import MainPage from './containers/Main';
+import Game from './views/game/game';
 import Error404 from './views/404/404';
 
 import './css/reset.scss';
@@ -35,6 +37,7 @@ const Application = () => (
           <Route path="signin" component={SigninUser} />
           <Route path="signup" component={SignupUser} />
           <Route path="leaderboard" component={Leaderbord} />
+          <Route path="game" component={Game} />
           <Route path="*" component={Error404} />
         </Route>
       </Router>

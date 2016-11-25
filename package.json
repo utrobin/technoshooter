@@ -25,7 +25,9 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "webworkify-webpack": "^2.0.1",
+    "whs": "^1.1.14"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",
@@ -47,12 +49,35 @@
     "http-proxy-middleware": "^0.17.2",
     "material-ui": "^0.16.2",
     "node-sass": "^3.10.0",
+    "postcss-clean": "^1.0.2",
+    "postcss-colormin": "^2.2.1",
+    "postcss-discard-duplicates": "^2.0.2",
+    "postcss-discard-empty": "^2.1.0",
+    "postcss-loader": "^1.1.1",
+    "postcss-merge-longhand": "^2.0.1",
+    "postcss-merge-rules": "^2.0.10",
+    "postcss-minify-font-values": "^1.0.5",
+    "postcss-ordered-values": "^2.2.2",
+    "postcss-unique-selectors": "^2.0.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "redux-devtools": "^3.3.1",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "three-js": "^79.0.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.1"
+    "webpack-dev-server": "^1.16.1",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-runtime": "^6.11.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "react-hot-loader": "^3.0.0-beta.5",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.0.11",
+    "redux-logger": "^2.7.0",
+    "redux-slider-monitor": "^1.0.7",
+    "resolve-url-loader": "^1.6.0",
+    "webpack-shell-plugin": "^0.4.3"
   }
 }

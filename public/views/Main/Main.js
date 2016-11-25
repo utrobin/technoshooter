@@ -15,9 +15,9 @@ const Main = ({ signout, auth, error }) => (
         <div>
           <RaisedButton
             className="main__button"
-            label="SinglePlayer"
+            label="Go game"
             primary={true}
-            onTouchTap={() => {browserHistory.push('/signin')}}
+            onTouchTap={() => {browserHistory.push('/game')}}
             fullWidth={true}
           />
           <RaisedButton

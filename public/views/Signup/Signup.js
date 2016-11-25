@@ -6,17 +6,25 @@ import { browserHistory } from 'react-router';
 
 import './Signup.scss';
 
-const Signup = ({ error, addUsers, auth }) => (
-  <div>
-    {
-      auth === true ? (
-        browserHistory.push("/")
-      ) : (
+export default class Signup extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    if (this.props.auth === true) {
+      browserHistory.push("/");
+      return (
+        <div></div>
+      )
+    }
+    else {
+      return (
         <div className="signup">
           <Logo />
           <h1 className="signup__title">Sign up to TechnoShooter</h1>
           <Paper zDepth={3}>
-            {error !== "" ? <span className="signup__form__error">{error}</span> : ""}
+            {this.props.error !== "" ? <span className="signup__form__error">{this.props.error}</span> : ""}
           </Paper>
           <Paper zDepth={3} className="signup__form">
             <Form
@@ -52,8 +60,8 @@ const Signup = ({ error, addUsers, auth }) => (
                 controls: {
                   name: 'Sign up'
                 },
-                action: addUsers,
-                error: error,
+                action: this.props.addUsers,
+                error: this.props.error,
                 url: '/api/signup',
                 message: `You have successfully registered`,
                 type: 'SIGNUP',
@@ -64,7 +72,5 @@ const Signup = ({ error, addUsers, auth }) => (
         </div>
       )
     }
-  </div>
-);
-
-export default Signup
+  }
+}

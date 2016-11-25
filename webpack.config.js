@@ -1,8 +1,11 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack');
+const autoPrefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
-    'bundle': ["./public/index.js"],
+    bundle: './public/index.js',
+    game: './public/game/index.js',
   },
   output: {
     path: "./public/built",
@@ -18,12 +21,12 @@ module.exports = {
         query: {presets: ['es2015', 'react', 'stage-2']}
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style", "css")
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss!resolve-url!sass-loader?sourceMap')
       },
       {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style", "css!sass")
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
       },
       {
         test   : /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
@@ -35,6 +38,14 @@ module.exports = {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx']
   },
+  sassLoader: {
+    includePaths: ['./**/*.sass']
+  },
+  postcss: [
+    autoPrefixer({
+      browsers: ['last 3 version', '> 1%', 'ie 9', 'Opera 12.1']
+    })
+  ],
   plugins: [
     new ExtractTextPlugin("style.css",  {allChunks: true})
   ]
