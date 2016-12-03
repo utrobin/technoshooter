@@ -47,6 +47,7 @@ module.exports = {
     })
   ],
   plugins: [
-    new ExtractTextPlugin("style.css",  {allChunks: true})
+    new webpack.NormalModuleReplacementPlugin(/inline\-worker/, 'webworkify-webpack'),
+    new ExtractTextPlugin("style.css",  {allChunks: true}),
   ]
 };

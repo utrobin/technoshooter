@@ -1,7 +1,5 @@
 import * as UTILS from './base/global';
 
-
-
 // Выбираем по какому протоколу будет производиться соединение
 const protocol = window.location.protocol === 'https:' ?
   'wss:' : 'ws:';
@@ -118,13 +116,10 @@ const sphere = new WHS.Sphere({ // Create sphere comonent.
     kind: 'lambert'
   },
 
-  position: [0, 100, 0]
+  position: [0, -1, 0]
 });
 
-
-
 sphere.addTo(world);
-
 
 // const material = new THREE.MeshPhongMaterial({color: UTILS.$colors.mesh});
 //
@@ -155,8 +150,11 @@ function loop () {
       'z': z
     };
     let json = {
-      'position': coords,
-      'id': id
+      type: "ru.javajava.mechanics.base.UserSnap",
+      data: {
+        'position': coords,
+        'id': id
+      }
     };
     ws.send(JSON.stringify(json));
   }).start(world);

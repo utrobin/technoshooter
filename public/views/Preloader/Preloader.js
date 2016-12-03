@@ -9,7 +9,6 @@ import './Preloader.scss';
 const App = ({children, auth, dialogMessage, dialogC}) => (
   <div className="Wrapper">
     {children}
-    {/*Прелоадер, при запросе об ауентификации пользователя, но работает плохо из-за быстро интернета*/}
     {/*{auth === null ? (*/}
       {/*<div className="Wrapper__preloader">*/}
         {/*<CircularProgress size={200} thickness={50} />*/}
@@ -33,12 +32,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dialogC: () => {
-      dispatch(dialogClose())
-    }
-  }
+const mapDispatchToProps = {
+  dialogC: dialogClose
 };
 
 const Preloader = connect(

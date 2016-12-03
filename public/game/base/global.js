@@ -36,7 +36,7 @@ export function addAmbient(world, intensity) {
   }).addTo(world);
 }
 
-export function addBasicLights(world, intensity = 0.5, position = [0, 10, 10], distance = 100) {
+export function addBasicLights(world, intensity = 0.3, position = [0, 10, 10], distance = 100) {
   addAmbient(world, 1 - intensity);
 
   return new WHS.PointLight({
