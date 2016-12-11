@@ -1,5 +1,6 @@
 import React from 'react';
 import { auth, login } from '../actions/User';
+import fetch from 'isomorphic-fetch';
 
 const isAuth = (dispatch) => {
   fetch('/api/isauth', {

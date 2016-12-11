@@ -8,7 +8,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
 import configureStore from './reducers/configureStore';
 import isAuth from './tools/isAuth';
-import './tools/sw/index';
+// import './tools/sw/index';
 
 import Preloader from './views/Preloader/Preloader';
 import SigninUser from './containers/Signin';
