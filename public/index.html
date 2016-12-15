@@ -5,8 +5,106 @@
     <title>TechnoShooter</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="built/style.css" type="text/css">
+    <style>
+        .main-preloader [role="progressbar"][aria-busy="true"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding-top: 8px;
+            width: 100%;
+            background-color: #0097a7;
+            animation: preloader-background linear 3.5s infinite;
+        }
+
+        .main-preloader [role="progressbar"][aria-busy="true"]::before, .main-preloader [role="progressbar"][aria-busy="true"]::after {
+            display: block;
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            width: 0;
+            height: 8px;
+            background: #aff43a;
+            animation: preloader-front linear 3.5s infinite;
+            content: '';
+        }
+
+        .main-preloader [role="progressbar"][aria-busy="true"]::before {
+            right: 50%;
+        }
+
+        .main-preloader [role="progressbar"][aria-busy="true"]::after {
+            left: 50%;
+        }
+
+        @keyframes preloader-background {
+            0%, 24.9% {
+                background-color: #0097a7;
+            }
+
+            25%, 49.9% {
+                background-color: #f44336;
+            }
+
+            50%, 74.9% {
+                background-color: #ff4081;
+            }
+
+            75%, 100% {
+            }
+        }
+
+        @keyframes preloader-front {
+            0% {
+                width: 0;
+                background-color: #f44336;
+            }
+
+            24.9% {
+                width: 50%;
+                background-color: #f44336;
+            }
+
+            25% {
+                width: 0;
+                background-color: #ff4081;
+            }
+
+            49.9% {
+                width: 50%;
+                background-color: #ff4081;
+            }
+
+            50% {
+                width: 0;
+            }
+
+            74.9% {
+                width: 50%;
+            }
+
+            75% {
+                width: 0%;
+                background-color: #0097a7;
+            }
+
+            100% {
+                width: 50%;
+                background-color: #0097a7;
+            }
+        }
+
+        .main-preloader {
+            width: 80%;
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
+<div class="main-preloader">
+    <div aria-busy="true" aria-label="Loading, please wait." role="progressbar"></div>
+</div>
+
+
 <div class="content"></div>
 <script src="built/bundle.js" type="text/javascript"></script>
 </body>

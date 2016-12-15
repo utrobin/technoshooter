@@ -7,7 +7,8 @@ import Paper from 'material-ui/Paper';
 import './Main.scss';
 
 const Main = ({ signout, auth, error }) => (
-  <div className="main">
+  <div className="main__wrapper">
+    <div className="main">
     <Logo />
     <h1 className="main__title">TechnoShooter</h1>
     {
@@ -62,6 +63,7 @@ const Main = ({ signout, auth, error }) => (
       )
     }
     </div>
+  </div>
 );
 
 export default Main;

@@ -1,6 +1,11 @@
 .signup{
   margin: auto;
   width: 308px;
+  &__wrapper{
+    display: flex;
+    height: 100vh;
+    min-height: 600px;
+  }
   &__form{
     padding: 15px;
     padding-top: 0;
@@ -21,5 +26,6 @@
     display: block;
     color: #fff;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
 }

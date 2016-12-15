@@ -1,0 +1,18 @@
+.error404{
+  margin: auto;
+  text-align: center;
+
+  &__icon{
+    margin-top: -50px!important;
+  }
+
+  &__wrapper{
+    display: flex;
+    height: 100vh;
+  }
+
+  &__h1{
+    font-size: 42px;
+    color: #fff;
+  }
+}

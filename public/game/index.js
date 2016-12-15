@@ -52,14 +52,13 @@ class Game {
           this.id = data;
           break;
         case "Snapshot":
+          if (data.shot) {
+            console.log('В тебя попали');
+            this.toggleGlick(0);
+            setTimeout(() => { this.toggleGlick(1) }, 500)
+          }
+
           data.players.forEach((player) => {
-            if (data.shot) {
-              console.log('В тебя попали');
-              this.toggleGlick(0);
-              setTimeout(() => { this.toggleGlick(1) }, 500)
-
-            }
-
             const playerId = player.id;
             if (playerId == this.id) {
               return;
@@ -199,7 +198,6 @@ class Game {
 
       this.toggleGlick = value => {
         pass.changeGlick = value;
-        composer.addPass(pass);
       };
     });
   }

@@ -8,7 +8,7 @@ import { browserHistory } from 'react-router';
 import './Signin.scss';
 
 const Signin = ({ error, addUsers, user, auth }) => (
-  <div>
+  <div className="signin__wrapper">
     {
       auth === true ? (
         browserHistory.push("/")

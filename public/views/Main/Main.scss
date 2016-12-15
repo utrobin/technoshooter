@@ -1,6 +1,12 @@
 .main{
   margin: auto;
   width: 308px;
+
+  &__wrapper{
+    display: flex;
+    height: 100vh;
+    min-height: 400px;
+  }
   &__form{
     padding: 15px;
     padding-top: 0;
@@ -13,7 +19,7 @@
     text-align: center;
     display: block;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
   }
   &__button{
     margin-top: 15px;

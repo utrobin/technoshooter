@@ -9,6 +9,8 @@ const isAuth = (dispatch) => {
   })
     .then(response => {return response.json()})
     .then(data => {
+      document.querySelector('.main-preloader').style.display = 'none';
+
       let user = localStorage.getItem('user');
       if (user !== undefined) {
         dispatch(login(JSON.parse(data)));
