@@ -19,9 +19,9 @@ before_script:
 script:
   - npm run webpack-prod
 after_success:
-  - mkdir build
-  - mv * build
-  - tar -czf package.tgz build
+  - mkdir archive
+  - mv * archive
+  - tar -czf package.tgz archive
   - export SSHPASS=$DEPLOY_PASS
-  - sshpass -e scp package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - sshpass -e scp package.tgz $DEPLOY_USER:$DEPLOY_PATH@$DEPLOY_HOST
   - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
