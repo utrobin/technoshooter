@@ -23,6 +23,6 @@ after_success:
   - mv * archive
   - tar -czf package.tgz archive
   - export SSHPASS=$DEPLOY_PASS
-  - sshpass -p $DEPLOY_PASS scp package.tgz root@151.248.118.10:$DEPLOY_PATH
+  - sshpass -p $DEPLOY_PASS scp package.tgz root@$DEPLOY_HOST:$DEPLOY_PATH
   - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
 
