@@ -48,7 +48,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat:{x: 2, y:2}}),
+        map: WHS.texture('/static/text.jpg', {repeat:{x: 100, y: 10}}),
       },
 
       position: [0, 0, 500]
@@ -61,7 +61,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat:{x: 2, y:2}}),
+        map: WHS.texture('/static/text.jpg', {repeat:{x: 100, y: 10}}),
       },
 
       position: [0, 0, -500]
@@ -74,7 +74,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat:{x: 2, y:2}}),
+        map: WHS.texture('/static/text.jpg', {repeat:{x: 100, y:10}}),
       },
 
       position: [500, 0, 0]
@@ -87,10 +87,49 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat:{x: 1, y: 1 }}),
+        map: WHS.texture('/static/text.jpg', {repeat:{x: 100, y: 10 }}),
       },
 
       position: [-500, 0, 0]
+    }).addTo(this.world);
+
+    new WHS.Box({
+      geometry: [100, 30, 100],
+      mass: 999999,
+
+      material: {
+        color: UTILS.$colors.mesh,
+        kind: 'lambert',
+        map: WHS.texture('/static/tx2.jpg', {repeat:{x: 1, y: 1 }}),
+      },
+
+      position: [300, 0, 70]
+    }).addTo(this.world);
+
+    new WHS.Box({
+      geometry: [100, 10, 50],
+      mass: 999999,
+
+      material: {
+        color: UTILS.$colors.mesh,
+        kind: 'lambert',
+        map: WHS.texture('/static/tx2.jpg', {repeat:{x: 1, y: 1 }}),
+      },
+
+      position: [-300, 0, 70]
+    }).addTo(this.world);
+
+    new WHS.Box({
+      geometry: [50, 10, 40],
+      mass: 999999,
+
+      material: {
+        color: UTILS.$colors.mesh,
+        kind: 'lambert',
+        map: WHS.texture('/static/tx2.jpg', {repeat:{x: 1, y: 1 }}),
+      },
+
+      position: [-300, 0, -70]
     }).addTo(this.world);
   }
 
@@ -267,7 +306,7 @@ class Game {
         heightSegments: 32
       },
 
-      mass: 8,
+      mass: 5,
 
       material: {
         color: UTILS.$colors.mesh,
@@ -284,7 +323,7 @@ class Game {
     this.world.start();
 
     this.world.setControls(new WHS.FirstPersonControls(this.player, {
-      speed: 5,
+      speed: 4,
       ypos: -10
     }));
   }
