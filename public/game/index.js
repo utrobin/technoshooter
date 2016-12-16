@@ -1,10 +1,12 @@
 import * as UTILS from './base/global';
-import GlitchPass from './glick'
+import GlitchPass from './glick';
 
 const Config = {
   ...UTILS.$world,
 
+
   camera: {
+    far: 1500,
     position: {
       z: 10
     }
@@ -40,12 +42,55 @@ class Game {
 
   addObject() {
     new WHS.Box({
-      geometry: [10 + Math.random() * 90, 10 + Math.random() * 90, 10 + Math.random() * 90],
+      geometry: [1000, 100, 50],
+      mass: 999999,
+
       material: {
         color: UTILS.$colors.mesh,
-        kind: 'lambert'
+        kind: 'lambert',
+        map: WHS.texture('/static/text.jpg', {repeat:{x: 2, y:2}}),
       },
-      position: [Math.random() * 1000 - 500, 0, Math.random() * 1000 - 500]
+
+      position: [0, 0, 500]
+    }).addTo(this.world);
+
+    new WHS.Box({
+      geometry: [1000, 100, 50],
+      mass: 999999,
+
+      material: {
+        color: UTILS.$colors.mesh,
+        kind: 'lambert',
+        map: WHS.texture('/static/text.jpg', {repeat:{x: 2, y:2}}),
+      },
+
+      position: [0, 0, -500]
+    }).addTo(this.world);
+
+    new WHS.Box({
+      geometry: [50, 100, 1000],
+      mass: 999999,
+
+      material: {
+        color: UTILS.$colors.mesh,
+        kind: 'lambert',
+        map: WHS.texture('/static/text.jpg', {repeat:{x: 2, y:2}}),
+      },
+
+      position: [500, 0, 0]
+    }).addTo(this.world);
+
+    new WHS.Box({
+      geometry: [50, 100, 1000],
+      mass: 999999,
+
+      material: {
+        color: UTILS.$colors.mesh,
+        kind: 'lambert',
+        map: WHS.texture('/static/text.jpg', {repeat:{x: 1, y: 1 }}),
+      },
+
+      position: [-500, 0, 0]
     }).addTo(this.world);
   }
 
@@ -222,7 +267,7 @@ class Game {
         heightSegments: 32
       },
 
-      mass: 3,
+      mass: 8,
 
       material: {
         color: UTILS.$colors.mesh,
@@ -239,7 +284,7 @@ class Game {
     this.world.start();
 
     this.world.setControls(new WHS.FirstPersonControls(this.player, {
-      speed: 3,
+      speed: 5,
       ypos: -10
     }));
   }
