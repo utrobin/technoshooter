@@ -19,9 +19,10 @@ before_script:
 script:
   - npm run webpack-prod
 after_success:
-  - mkdir dum
-  - mv * dum
-  - tar -czf package.tgz dum
+  - mkdir archive
+  - mv * archive
+  - tar -czf package.tgz archive
   - export SSHPASS=$DEPLOY_PASS
-  - sshpass -p $DEPLOY_PASS scp package.tgz -o "StrictHostKeyChecking=no" $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - sshpass -p $DEPLOY_PASS scp package.tgz root@DEPLOY_HOST:$DEPLOY_PATH
   - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+
