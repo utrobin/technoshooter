@@ -8,17 +8,20 @@
         <script>
             var xhr = new XMLHttpRequest();
             xhr.open("POST", '/api/isauth', true);
-            xhr.send();
+
+            //TODO от Шомы: тут надо сначала подписаться, а потом запрос слать
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState != 4) return;
 
                 var result = JSON.parse(xhr.responseText);
                 if (!result) {
-                    window.location.href = "/"
+                    window.location.href = "/";
                 }
 
             };
+
+            xhr.send();
 
             window.onpopstate = function reload() {
                 location.reload();
@@ -196,16 +199,22 @@
                 padding: 0;
                 overflow: hidden;
             }
-            .message{
+            .message {
                 position: absolute;
                 z-index: 99999999;
                 right: 10px;
                 top: 10px;
             }
+            #pew-pew {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1500;
+            }
         </style>
     </head>
     <body>
-        <div id="blocker" style="display: block;">
+        <div id="blocker" style="display: block; position: fixed; z-index: 2000">
             <div class="content">
                 <h1>Click here</h1>
             </div>
@@ -219,6 +228,8 @@
         <div class="message">
 
         </div>
+        <img src="static/cod_hands2x3.png" id="pew-hand" style="display: none"/>
+        <canvas id="pew-pew" height="1" width="1"></canvas>
 
     <script src="game/lib/whitestorm.js"></script>
     <script src="built/game.js"></script>
