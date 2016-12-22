@@ -5,10 +5,13 @@ export default class Pew {
     this.context = this.canvas.getContext("2d");
     this.interval = null;
     this.handImg = document.getElementById(conf.hand);
+
+    this.handErrorIter = 0.0;
   }
 
   start() {
     this.interval = setInterval(() => {
+      this.handErrorIter = (this.handErrorIter + 0.05) % (2 * Math.PI);
       this.resize();
       this.draw();
     }, 32);
@@ -37,8 +40,15 @@ export default class Pew {
     let canvas = this.canvas;
     let context = this.context;
     let img = this.handImg;
+    let width = canvas.width;
+    let height = canvas.height;
+    let error = this.handErrorIter;
 
-    context.drawImage(img, canvas.width / 3, canvas.height / 2, canvas.width / 2, canvas.height / 2);
+    context.drawImage(img,
+      width / 3 - 0.005 * width * Math.cos(error),
+      height / 2 - 0.01 * height * (Math.sin(2 * error) - 1),
+      width / 2,
+      height / 2);
   }
 
 }
