@@ -184,7 +184,7 @@ class Game {
                 document.querySelector('.message').appendChild(div);
                 setTimeout(() => {
                   document.querySelector('.message').removeChild(div)
-                }, 3000);
+                }, 30000);
 
                 this.world.remove(this.players[`id${element.id}`]);
                 setTimeout(() => {
