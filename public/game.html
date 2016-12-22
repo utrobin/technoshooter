@@ -200,10 +200,17 @@
                 padding: 0;
                 overflow: hidden;
             }
+
+            #pew-pew {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1500;
+            }
         </style>
     </head>
     <body>
-        <div id="blocker" style="display: block;">
+        <div id="blocker" style="display: block; position: fixed; z-index: 2000">
             <div class="content">
                 <h1>Click here</h1>
             </div>
@@ -214,6 +221,8 @@
             <div class="sight__bottom"></div>
             <div class="sight__left"></div>
         </div>
+        <img src="static/cod_hands2x3.png" id="pew-hand" style="display: none"/>
+        <canvas id="pew-pew" height="1" width="1"></canvas>
 
     <script src="game/lib/whitestorm.js"></script>
     <script src="built/game.js"></script>

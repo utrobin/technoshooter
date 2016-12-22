@@ -1,9 +1,17 @@
 import * as UTILS from './base/global';
 import GlitchPass from './glick';
+import Pew from './pewpew';
+
+let pewConfig = {
+  canvas: "pew-pew",
+  hand: "pew-hand"
+};
+
+let pew = new Pew(pewConfig);
+pew.start();
 
 const Config = {
   ...UTILS.$world,
-
 
   camera: {
     far: 1500,
@@ -48,7 +56,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat:{x: 100, y: 10}}),
+        map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
       },
 
       position: [0, 0, 500]
@@ -61,7 +69,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat:{x: 100, y: 10}}),
+        map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
       },
 
       position: [0, 0, -500]
@@ -74,7 +82,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat:{x: 100, y:10}}),
+        map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
       },
 
       position: [500, 0, 0]
@@ -87,7 +95,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat:{x: 100, y: 10 }}),
+        map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
       },
 
       position: [-500, 0, 0]
@@ -100,7 +108,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/tx2.jpg', {repeat:{x: 1, y: 1 }}),
+        map: WHS.texture('/static/tx2.jpg', {repeat: {x: 1, y: 1}}),
       },
 
       position: [300, 0, 70]
@@ -113,7 +121,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/tx2.jpg', {repeat:{x: 1, y: 1 }}),
+        map: WHS.texture('/static/tx2.jpg', {repeat: {x: 1, y: 1}}),
       },
 
       position: [-300, 0, 70]
@@ -126,7 +134,7 @@ class Game {
       material: {
         color: UTILS.$colors.mesh,
         kind: 'lambert',
-        map: WHS.texture('/static/tx2.jpg', {repeat:{x: 1, y: 1 }}),
+        map: WHS.texture('/static/tx2.jpg', {repeat: {x: 1, y: 1}}),
       },
 
       position: [-300, 0, -70]
@@ -151,7 +159,9 @@ class Game {
           if (data.shot) {
             console.log('В тебя попали');
             this.toggleGlick(0);
-            setTimeout(() => { this.toggleGlick(1) }, 500)
+            setTimeout(() => {
+              this.toggleGlick(1)
+            }, 500)
           }
 
           data.players.forEach((player) => {
@@ -204,7 +214,8 @@ class Game {
     this.ws.onclose = (event) => {
       if (event.wasClean) {
         console.log('Соединение закрыто чисто');
-      } else {
+      }
+      else {
         console.log('Обрыв соединения');
       }
       console.log('Код: ' + event.code + ' причина: ' + event.reason);
@@ -219,7 +230,7 @@ class Game {
     };
   }
 
-  loop () {
+  loop() {
     window.addEventListener('mousedown', () => {
       if (typeof this.world.controls.getDirection == 'function') {
         let camera = {
@@ -228,9 +239,9 @@ class Game {
           'z': this.world.controls.getDirection().z
         };
 
-        const { x, y, z } = this.player.position;
+        const {x, y, z} = this.player.position;
 
-        let position = { x, y, z };
+        let position = {x, y, z};
 
         let json = {
           type: "ru.javajava.mechanics.base.UserSnap",
@@ -247,7 +258,7 @@ class Game {
     }, this);
 
     return new WHS.Loop(() => {
-      const { x, y, z } = this.player.position;
+      const {x, y, z} = this.player.position;
 
       let camera = {
         x: 0,
@@ -264,7 +275,7 @@ class Game {
         // camera = world.controls.getDirection().toArray
       }
 
-      let position = { x, y, z };
+      let position = {x, y, z};
 
       let json = {
         type: "ru.javajava.mechanics.base.UserSnap",
