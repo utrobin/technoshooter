@@ -8,20 +8,23 @@
         <script>
             var xhr = new XMLHttpRequest();
             xhr.open("POST", '/api/isauth', true);
-            xhr.send();
+
+            //TODO от Шомы: тут надо сначала подписаться, а потом запрос слать
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState != 4) return;
 
                 var result = JSON.parse(xhr.responseText);
                 if (!result) {
-                    window.location.href = "/"
+                    window.location.href = "/";
                 }
 
             };
 
+            xhr.send();
+
             window.onpopstate = function reload() {
-                console.log("ghbdtn")
+                console.log("ghbdtn");
                 location.reload();
             }
 
