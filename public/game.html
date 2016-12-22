@@ -21,7 +21,6 @@
             };
 
             window.onpopstate = function reload() {
-                console.log("ghbdtn")
                 location.reload();
             }
 
@@ -197,6 +196,12 @@
                 padding: 0;
                 overflow: hidden;
             }
+            .message{
+                position: absolute;
+                z-index: 99999999;
+                right: 10px;
+                top: 10px;
+            }
         </style>
     </head>
     <body>
@@ -210,6 +215,9 @@
             <div class="sight__right"></div>
             <div class="sight__bottom"></div>
             <div class="sight__left"></div>
+        </div>
+        <div class="message">
+
         </div>
 
     <script src="game/lib/whitestorm.js"></script>

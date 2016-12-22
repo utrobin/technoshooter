@@ -37,6 +37,8 @@ class Game {
     this.connect();
     this.createPostProcessing();
 
+
+
     this.createPlayer();
   }
 
@@ -153,6 +155,28 @@ class Game {
             this.toggleGlick(0);
             setTimeout(() => { this.toggleGlick(1) }, 500)
           }
+
+          data.players.forEach((el) => {
+            if (el.victims.length > 0) {
+              el.victims.forEach((element) => {
+                const message = `
+                  <div>
+                      <span>${el.login}</span>
+                      убил
+                      <span>${element.login}</span>
+                  </div>
+                `
+                let div = document.createElement('div');
+                div.innerHTML = message;
+                document.querySelector('.message').appendChild(div);
+                setTimeout(() => {
+                  document.querySelector('.message').removeChild(div)
+                }, 3000)
+              })
+            }
+          });
+
+
 
           data.players.forEach((player) => {
             const playerId = player.id;
@@ -326,6 +350,18 @@ class Game {
       speed: 4,
       ypos: -10
     }));
+
+    // setTimeout(() => {
+    //   this.world.remove(this.player);
+    //   this.world.setControls(new WHS.OrbitControls())
+    // }, 5000);
+    //
+    // setTimeout(() => {
+    //   this.createPlayer();
+    //   this.world.setControls(new WHS.FirstPersonControls(this.player, {
+    //   speed: 4,
+    //   ypos: -10
+    // }));}, 10000);
   }
 }
 
