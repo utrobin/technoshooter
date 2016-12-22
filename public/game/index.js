@@ -61,7 +61,7 @@ class Game {
         map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
       },
 
-      position: [0, 0, 500]
+      position: [0, 1, 500]
     }).addTo(this.world);
 
     new WHS.Box({
@@ -74,7 +74,7 @@ class Game {
         map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
       },
 
-      position: [0, 0, -500]
+      position: [0, 1, -500]
     }).addTo(this.world);
 
     new WHS.Box({
@@ -100,7 +100,7 @@ class Game {
         map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
       },
 
-      position: [-500, 0, 0]
+      position: [-500, 1, 0]
     }).addTo(this.world);
 
     new WHS.Box({
@@ -113,7 +113,7 @@ class Game {
         map: WHS.texture('/static/tx2.jpg', {repeat: {x: 1, y: 1}}),
       },
 
-      position: [300, 0, 70]
+      position: [300, 1, 70]
     }).addTo(this.world);
 
     new WHS.Box({
@@ -126,7 +126,7 @@ class Game {
         map: WHS.texture('/static/tx2.jpg', {repeat: {x: 1, y: 1}}),
       },
 
-      position: [-300, 0, 70]
+      position: [-300, 1, 70]
     }).addTo(this.world);
 
     new WHS.Box({
@@ -139,7 +139,7 @@ class Game {
         map: WHS.texture('/static/tx2.jpg', {repeat: {x: 1, y: 1}}),
       },
 
-      position: [-300, 0, -70]
+      position: [-300, 1, -70]
     }).addTo(this.world);
   }
 
@@ -170,18 +170,26 @@ class Game {
             if (el.victims.length > 0) {
               el.victims.forEach((element) => {
                 const message = `
-                  <div>
-                      <span>${el.login}</span>
+                  <div class="one-message">
+                    <div class="one-message__wrapper">
+                      <span class="killer">${el.login}</span>
                       убил
-                      <span>${element.login}</span>
+                      <span class="victim">${element.login}</span>
+                    </div>
                   </div>
-                `
+                `;
+
                 let div = document.createElement('div');
                 div.innerHTML = message;
                 document.querySelector('.message').appendChild(div);
                 setTimeout(() => {
                   document.querySelector('.message').removeChild(div)
-                }, 3000)
+                }, 3000);
+
+                this.world.remove(this.players[`id${element.id}`]);
+                setTimeout(() => {
+                  this.players[`id${element.id}`].addTo(this.world);
+                }, 3000);
               })
             }
           });
@@ -229,7 +237,7 @@ class Game {
         case "RemovePlayer":
           data.forEach((el) => {
             this.world.remove(this.players[`id${el}`]);
-            delete this.players[`id${el}`]; //нужно поставить null
+            delete this.players[`id${el}`];
           });
           break;
       }
@@ -363,10 +371,10 @@ class Game {
     }));
 
     // setTimeout(() => {
-    //   this.world.remove(this.player);
+    //   console.log('gfg');
     //   this.world.setControls(new WHS.OrbitControls())
     // }, 5000);
-    //
+
     // setTimeout(() => {
     //   this.createPlayer();
     //   this.world.setControls(new WHS.FirstPersonControls(this.player, {

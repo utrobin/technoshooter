@@ -9,8 +9,6 @@
             var xhr = new XMLHttpRequest();
             xhr.open("POST", '/api/isauth', true);
 
-            //TODO от Шомы: тут надо сначала подписаться, а потом запрос слать
-
             xhr.onreadystatechange = function() {
                 if (xhr.readyState != 4) return;
 
@@ -210,6 +208,28 @@
                 top: 0;
                 left: 0;
                 z-index: 1500;
+                pointer-events: none;
+            }
+            #pew-hand{
+                pointer-events: none;
+            }
+            .one-message{
+                color: #fff;
+                font-size: 16px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+            }
+            .one-message__wrapper{
+                float: right;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 3px;
+                background-color: rgba(0,0,0,0.4);
+            }
+            .victim{
+                color: red;
+            }
+            .killer{
+                color: green;
             }
         </style>
     </head>
