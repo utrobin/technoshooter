@@ -63,8 +63,9 @@ export function addPlane(world, size = 100) {
     mass: 0,
 
     material: {
-      color: 0x447F8B,
-      kind: 'phong'
+      color: $colors.mesh,
+      kind: 'phong',
+      map: WHS.texture('/static/green.jpg', {repeat:{x: 300, y: 300}}),
     },
 
     rotation: {
