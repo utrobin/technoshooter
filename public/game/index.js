@@ -6,7 +6,8 @@ import Pew from './pewpew';
 
 let pewConfig = {
   canvas: "pew-pew",
-  hand: "pew-hand"
+  hand: "pew-hand",
+  shoot: "pew-shoot"
 };
 
 let pew = new Pew(pewConfig);
@@ -225,6 +226,8 @@ class Game {
       if(this.killed) {
         return;
       }
+
+      pew.shoot();
 
       if (typeof this.world.controls.getDirection == 'function') {
         let camera = {
