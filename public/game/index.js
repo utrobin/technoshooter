@@ -222,7 +222,7 @@ class Game {
 
   loop() {
     window.addEventListener('mousedown', () => {
-      // console.log(this.player.position);
+      console.log(this.player.position);
       if(this.killed) {
         return;
       }
@@ -340,7 +340,7 @@ class Game {
         kind: 'lambert'
       },
 
-      position: [0, -1, 0]
+      position: [100, 3, 100]
     });
 
     this.player.addTo(this.world);
