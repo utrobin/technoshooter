@@ -79,15 +79,15 @@ export default class Pew {
       context.drawImage(shootImg,
         39 * iter, 0,
         39, 40,
-        width / 2 - width / 20,
-        height / 2 - height / 20,
-        width / 10,
-        height / 10);
+        width / 1.75 - 0.005 * width * Math.cos(error),
+        height / 1.85 - 0.01 * height * (Math.sin(2 * error) - 1),
+        width / 20,
+        height / 20);
 
     });
 
     context.drawImage(img,
-      width / 3 - 0.005 * width * Math.cos(error),
+      width / 1.8 - 0.005 * width * Math.cos(error),
       height / 2 - 0.01 * height * (Math.sin(2 * error) - 1),
       width / 2,
       height / 2);

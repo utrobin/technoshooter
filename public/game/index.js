@@ -12,10 +12,6 @@ let pewConfig = {
 let pew = new Pew(pewConfig);
 pew.start();
 
-setInterval(() => {
-  pew.shoot();
-}, 2000);
-
 const Config = {
   ...UTILS.$world,
 
@@ -223,6 +219,8 @@ class Game {
       if(this.killed) {
         return;
       }
+
+      pew.shoot();
 
       if (typeof this.world.controls.getDirection == 'function') {
         let camera = {
