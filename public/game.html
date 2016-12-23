@@ -173,6 +173,18 @@
                 z-index: 999;
                 left: calc( 50vw - 15px );
             }
+            .health {
+                position: fixed;
+                bottom: 25px;
+                z-index: 999;
+                left: 25px;
+            }
+            .health img, .hp{
+                display: inline-block;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+                font-size: 55px;
+                color: rgb(55, 153, 150);
+            }
             .sight__top {
                 width: 2px;
                 background-color: #f44336;
@@ -256,7 +268,7 @@
         <div class="blocker-kill" style="position: fixed; z-index: 2000">
             <div class="content-kill">
                 <h1>Ты умер</h1>
-                <h1>Возраждение чере <time class="time-reborn">3</time></h1>
+                <h1>Возрождение чере <time class="time-reborn">3</time></h1>
             </div>
         </div>
         <div id="blocker" style="display: block; position: fixed; z-index: 2000">
@@ -273,6 +285,10 @@
         </div>
         <div class="message">
 
+        </div>
+        <div class="health">
+            <img src="static/health.png" width="40" height="40">
+            <div class="hp">100</div>
         </div>
         <img src="static/cod_hands2x3.png" id="pew-hand" style="display: none"/>
         <canvas id="pew-pew" height="1" width="1"></canvas>

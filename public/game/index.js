@@ -78,6 +78,10 @@ class Game {
             }, 500)
           }
 
+          if (document.querySelector('.hp').innerHTML != data.hp) {
+            document.querySelector('.hp').innerHTML = data.hp;
+          }
+
           if (data.hp === 0) {
             let time = 3;
 
