@@ -197,6 +197,22 @@
                 z-index: 999;
                 left: 25px;
             }
+            .leaderboard{
+                pointer-events: none;
+                color:white;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
+                background: rgba(0,0,0,0.7);
+                position: fixed;
+                left: calc(50vw - 300px);
+                top: 20px;
+                margin: auto;
+                z-index: 999;
+                text-align: center;
+                white-space: nowrap;
+                display: none;
+                border-radius: 2px;
+            }
             .health img, .hp{
                 display: inline-block;
                 font-family: 'Roboto', sans-serif;
@@ -379,6 +395,37 @@
                 display: block;
                 margin-top: 80px;
             }
+            table{
+                width: 600px;
+                border-collapse:collapse;
+            }
+            td:first-child {
+                width: 70%;
+                text-align: left;
+                padding-left: 10px;
+            }
+            th:first-child {
+                width: 70%;
+                text-align: left;
+                padding-left: 10px;
+            }
+            td{
+                padding: 5px;
+                border: none;
+            }
+            tr{
+                border: none;
+            }
+            table caption{
+                padding: 10px;
+            }
+            tr:nth-child(2n) {
+                background: rgba(255,255,255,0.7);
+                color: #000;
+            }
+            tr.active {
+                background: rgba(253, 192, 47, 0.7);
+            }
         </style>
     </head>
     <body>
@@ -386,7 +433,7 @@
             <div class="main-preloader">
                 <div aria-busy="true" aria-label="Loading, please wait." role="progressbar"></div>
             </div>
-            <h1>Wait loading <i class="point"></i></h1>
+            <h1>Loading <i class="point"></i></h1>
         </div>
         <script>
             var qqq = 0;
@@ -422,6 +469,10 @@
         <div class="message">
 
         </div>
+        <div class="leaderboard">
+            <table class="table">
+            </table>
+        </div>
         <div class="health">
             <img src="static/health.png" width="40" height="40">
             <div class="hp">100</div>
@@ -434,10 +485,3 @@
 
     </body>
 </html>
-
-
-
-
-
-
-

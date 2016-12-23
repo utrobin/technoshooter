@@ -1,6 +1,7 @@
 import * as UTILS from './base/global';
 import GlitchPass from './glick';
 import createMap from './base/map';
+import generateTable from './base/generateTable';
 import Pew from './pewpew';
 
 let pewConfig = {
@@ -42,6 +43,7 @@ class Game {
     this.id = -1;
     this.players = {};
     this.killed = false;
+    this.leaderboard = false;
 
     this.addObject();
     this.connect();
@@ -70,6 +72,11 @@ class Game {
           this.id = data;
           break;
         case "Snapshot":
+          if (!this.leaderboard) {
+            generateTable(data.players, this.id);
+            this.leaderboard = true;
+          }
+
           if (data.shot) {
             console.log('В тебя попали');
             this.toggleGlick(0);
@@ -142,7 +149,8 @@ class Game {
                 setTimeout(() => {
                   this.players[`id${element.id}`].addTo(this.world);
                 }, 3000);
-              })
+              });
+              generateTable(data.players, this.id);
             }
           });
 
@@ -243,6 +251,20 @@ class Game {
         this.ws.send(JSON.stringify(json));
       }
     }, this);
+
+    window.addEventListener('keydown', event => {
+      if (event.keyCode === 9) {
+        event.preventDefault();
+        document.querySelector('.leaderboard').style.display = 'block';
+      }
+    });
+
+    window.addEventListener('keyup', event => {
+      if (event.keyCode === 9) {
+        event.preventDefault();
+        document.querySelector('.leaderboard').style.display = 'none';
+      }
+    });
 
     return new WHS.Loop(() => {
       const {x, y, z} = this.player.position;
