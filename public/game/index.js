@@ -1,5 +1,6 @@
 import * as UTILS from './base/global';
 import GlitchPass from './glick';
+import createMap from './base/map';
 import Pew from './pewpew';
 
 let pewConfig = {
@@ -33,7 +34,7 @@ class Game {
   constructor(options) {
     this.world = new WHS.World(options);
 
-    UTILS.addPlane(this.world, 1000);
+    UTILS.addPlane(this.world, 1300);
     UTILS.addBasicLights(this.world);
 
     this.ws = new WebSocket(address);
@@ -45,102 +46,12 @@ class Game {
     this.connect();
     this.createPostProcessing();
 
-
-
     this.createPlayer();
   }
 
   addObject() {
-    new WHS.Box({
-      geometry: [1000, 100, 50],
-      mass: 999999,
+    createMap(this.world);
 
-      material: {
-        color: UTILS.$colors.mesh,
-        kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
-      },
-
-      position: [0, 1, 500]
-    }).addTo(this.world);
-
-    new WHS.Box({
-      geometry: [1000, 100, 50],
-      mass: 999999,
-
-      material: {
-        color: UTILS.$colors.mesh,
-        kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
-      },
-
-      position: [0, 1, -500]
-    }).addTo(this.world);
-
-    new WHS.Box({
-      geometry: [50, 100, 1000],
-      mass: 999999,
-
-      material: {
-        color: UTILS.$colors.mesh,
-        kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
-      },
-
-      position: [500, 0, 0]
-    }).addTo(this.world);
-
-    new WHS.Box({
-      geometry: [50, 100, 1000],
-      mass: 999999,
-
-      material: {
-        color: UTILS.$colors.mesh,
-        kind: 'lambert',
-        map: WHS.texture('/static/text.jpg', {repeat: {x: 100, y: 10}}),
-      },
-
-      position: [-500, 1, 0]
-    }).addTo(this.world);
-
-    new WHS.Box({
-      geometry: [100, 30, 100],
-      mass: 999999,
-
-      material: {
-        color: UTILS.$colors.mesh,
-        kind: 'lambert',
-        map: WHS.texture('/static/tx2.jpg', {repeat: {x: 1, y: 1}}),
-      },
-
-      position: [300, 1, 70]
-    }).addTo(this.world);
-
-    new WHS.Box({
-      geometry: [100, 10, 50],
-      mass: 999999,
-
-      material: {
-        color: UTILS.$colors.mesh,
-        kind: 'lambert',
-        map: WHS.texture('/static/tx2.jpg', {repeat: {x: 1, y: 1}}),
-      },
-
-      position: [-300, 1, 70]
-    }).addTo(this.world);
-
-    new WHS.Box({
-      geometry: [50, 10, 40],
-      mass: 999999,
-
-      material: {
-        color: UTILS.$colors.mesh,
-        kind: 'lambert',
-        map: WHS.texture('/static/tx2.jpg', {repeat: {x: 1, y: 1}}),
-      },
-
-      position: [-300, 1, -70]
-    }).addTo(this.world);
   }
 
   connect() {
@@ -173,7 +84,7 @@ class Game {
                   <div class="one-message">
                     <div class="one-message__wrapper">
                       <span class="killer">${el.login}</span>
-                      убил
+                      &nbsp;убил&nbsp;
                       <span class="victim">${element.login}</span>
                     </div>
                   </div>
