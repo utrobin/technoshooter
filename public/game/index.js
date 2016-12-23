@@ -41,6 +41,7 @@ class Game {
 
     this.id = -1;
     this.players = {};
+    this.killed = false;
 
     this.addObject();
     this.connect();
@@ -77,6 +78,42 @@ class Game {
             }, 500)
           }
 
+          if (data.hp === 0) {
+            let time = 3;
+
+            const interval = setInterval( () => {
+              if (time === -1) {
+                clearInterval(interval);
+                return
+              }
+              document.querySelector('.time-reborn').innerHTML = time;
+              time--;
+
+            } , 1000);
+
+            document.querySelector('.time-reborn').innerHTML = time;
+
+            document.querySelector('.blocker-kill').style.display = 'block';
+            this.killed = true;
+
+            setTimeout(() => {
+              document.querySelector('.blocker-kill').style.display = 'none';
+              this.killed = false;
+
+              function getRandomNumber(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+              }
+
+              const coordinate = [
+                {x: 344, y: 3, z: -393},
+                {x: 401, y: 3, z: 390},
+                {x: -472, y: 3, z: 408},
+                {x: -449, y: 3, z: -461}
+              ];
+              this.player.position.copy(coordinate[getRandomNumber(0, 3)]);
+            }, 3100)
+          }
+
           data.players.forEach((el) => {
             if (el.victims.length > 0) {
               el.victims.forEach((element) => {
@@ -95,7 +132,7 @@ class Game {
                 document.querySelector('.message').appendChild(div);
                 setTimeout(() => {
                   document.querySelector('.message').removeChild(div)
-                }, 30000);
+                }, 4000);
 
                 this.world.remove(this.players[`id${element.id}`]);
                 setTimeout(() => {
@@ -104,8 +141,6 @@ class Game {
               })
             }
           });
-
-
 
           data.players.forEach((player) => {
             const playerId = player.id;
@@ -175,6 +210,11 @@ class Game {
 
   loop() {
     window.addEventListener('mousedown', () => {
+      // console.log(this.player.position);
+      if(this.killed) {
+        return;
+      }
+
       if (typeof this.world.controls.getDirection == 'function') {
         let camera = {
           'x': this.world.controls.getDirection().x,
@@ -219,6 +259,13 @@ class Game {
       }
 
       let position = {x, y, z};
+      if (this.killed) {
+        position = {
+          x: -9999,
+          y: -9999,
+          z: -9999
+        }
+      }
 
       let json = {
         type: "ru.javajava.mechanics.base.UserSnap",
