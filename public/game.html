@@ -25,11 +25,28 @@
                 location.reload();
             }
         </script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;subset=cyrillic" rel="stylesheet">
         <style>
             #blocker {
                 color:white;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
                 background: rgba(0,0,0,0.7);
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 99999;
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            .main-block{
+                color:white;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
+                background: rgba(0,0,0,1);
                 position: fixed;
                 top: 0px;
                 left: 0px;
@@ -42,7 +59,8 @@
 
             .blocker-kill {
                 color:white;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
                 background: rgba(158,11,11,0.7);
                 position: fixed;
                 top: 0px;
@@ -181,8 +199,9 @@
             }
             .health img, .hp{
                 display: inline-block;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+                font-family: 'Roboto', sans-serif;
                 font-size: 55px;
+                font-weight: 500;
                 color: rgb(55, 153, 150);
             }
             .sight__top {
@@ -247,7 +266,8 @@
             .one-message{
                 color: #fff;
                 font-size: 16px;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
             }
             .one-message__wrapper{
                 float: right;
@@ -262,9 +282,125 @@
             .killer{
                 color: green;
             }
+            .main-preloader [role="progressbar"][aria-busy="true"] {
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding-top: 8px;
+                width: 100%;
+                background-color: #0097a7;
+                animation: preloader-background linear 3.5s infinite;
+            }
+
+            .main-preloader [role="progressbar"][aria-busy="true"]::before, .main-preloader [role="progressbar"][aria-busy="true"]::after {
+                display: block;
+                position: absolute;
+                top: 0;
+                z-index: 2;
+                width: 0;
+                height: 8px;
+                background: #aff43a;
+                animation: preloader-front linear 3.5s infinite;
+                content: '';
+            }
+
+            .main-preloader [role="progressbar"][aria-busy="true"]::before {
+                right: 50%;
+            }
+
+            .main-preloader [role="progressbar"][aria-busy="true"]::after {
+                left: 50%;
+            }
+
+            @keyframes preloader-background {
+                0%, 24.9% {
+                    background-color: #0097a7;
+                }
+
+                25%, 49.9% {
+                    background-color: #f44336;
+                }
+
+                50%, 74.9% {
+                    background-color: #ffeb3b;
+                }
+
+                75%, 100% {
+                }
+            }
+
+            @keyframes preloader-front {
+                0% {
+                    width: 0;
+                    background-color: #f44336;
+                }
+
+                24.9% {
+                    width: 50%;
+                    background-color: #f44336;
+                }
+
+                25% {
+                    width: 0;
+                    background-color: #ffeb3b;
+                }
+
+                49.9% {
+                    width: 50%;
+                    background-color: #ffeb3b;
+                }
+
+                50% {
+                    width: 0;
+                }
+
+                74.9% {
+                    width: 50%;
+                }
+
+                75% {
+                    width: 0%;
+                    background-color: #0097a7;
+                }
+
+                100% {
+                    width: 50%;
+                    background-color: #0097a7;
+                }
+            }
+
+            .main-preloader {
+                width: 80%;
+                background-color: #fff;
+            }
+            .main-block h1{
+                background-color: #000;
+                margin: auto;
+                display: block;
+                margin-top: 80px;
+            }
         </style>
     </head>
     <body>
+        <div class="main-block">
+            <div class="main-preloader">
+                <div aria-busy="true" aria-label="Loading, please wait." role="progressbar"></div>
+            </div>
+            <h1>Wait loading <i class="point"></i></h1>
+        </div>
+        <script>
+            var qqq = 0;
+            var globalInterval = setInterval(function(){
+                qqq++;
+                if ( qqq == 1 ) document.querySelector('.point').innerHTML = '.';
+                else if ( qqq == 2 ) document.querySelector('.point').innerHTML = '..';
+                else if ( qqq == 3 ) document.querySelector('.point').innerHTML = '...';
+                else {
+                    document.querySelector('.point').innerHTML = '';
+                    qqq = 0;
+                }
+            }, 400);
+        </script>
         <div class="blocker-kill" style="position: fixed; z-index: 2000">
             <div class="content-kill">
                 <h1>Ты умер</h1>

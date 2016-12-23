@@ -349,7 +349,11 @@ class Game {
 var app = null;
 
 function bootstrap() {
-  app.start()
+  app.start();
+  setTimeout(() => {
+    document.querySelector('.main-block').style.display = 'none';
+    clearInterval(globalInterval);
+  }, 1000);
 }
 
 function configure() {
