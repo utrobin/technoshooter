@@ -5,11 +5,16 @@ import Pew from './pewpew';
 
 let pewConfig = {
   canvas: "pew-pew",
-  hand: "pew-hand"
+  hand: "pew-hand",
+  shoot: "pew-shoot"
 };
 
 let pew = new Pew(pewConfig);
 pew.start();
+
+setInterval(() => {
+  pew.shoot();
+}, 2000);
 
 const Config = {
   ...UTILS.$world,
