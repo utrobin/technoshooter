@@ -222,7 +222,6 @@ class Game {
 
   loop() {
     window.addEventListener('mousedown', () => {
-      console.log(this.player.position);
       if(this.killed) {
         return;
       }
@@ -333,7 +332,7 @@ class Game {
         heightSegments: 32
       },
 
-      mass: 5,
+      mass: 3,
 
       material: {
         color: UTILS.$colors.mesh,
@@ -350,21 +349,9 @@ class Game {
     this.world.start();
 
     this.world.setControls(new WHS.FirstPersonControls(this.player, {
-      speed: 4,
-      ypos: -10
+      speed: 5,
+      ypos: -50
     }));
-
-    // setTimeout(() => {
-    //   console.log('gfg');
-    //   this.world.setControls(new WHS.OrbitControls())
-    // }, 5000);
-
-    // setTimeout(() => {
-    //   this.createPlayer();
-    //   this.world.setControls(new WHS.FirstPersonControls(this.player, {
-    //   speed: 4,
-    //   ypos: -10
-    // }));}, 10000);
   }
 }
 

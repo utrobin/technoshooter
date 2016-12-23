@@ -2,7 +2,7 @@ export const $world = {
   stats: "fps", // fps, ms, mb or false if not need.
   autoresize: "window",
 
-  gravity: [0, -100, 0],
+  gravity: [0, -400, 0],
 
 
 
