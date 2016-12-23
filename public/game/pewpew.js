@@ -10,7 +10,6 @@ class Shoot {
   }
 
   num() {
-    console.log(this.cond);
     return this.cond;
   }
 }
@@ -38,8 +37,9 @@ export default class Pew {
         }
       });
       this.resize();
+      this.clear();
       this.draw();
-    }, 80);
+    }, 50);
   }
 
   shoot() {
@@ -54,7 +54,6 @@ export default class Pew {
   clear() {
     let canvas = this.canvas;
     let context = this.context;
-
     context.clearRect(0, 0, canvas.width, canvas.height);
   }
 
@@ -74,15 +73,16 @@ export default class Pew {
     let height = canvas.height;
     let error = this.handErrorIter;
 
+    console.log(this.shoots.length);
     this.shoots.forEach((el) => {
       let iter = el.next();
       context.drawImage(shootImg,
-        40 * iter, 0,
-        40 * (iter + 1), 40,
-        width / 3 - width / 10,
-        height / 2 - height / 10,
-        width / 3 + width / 10,
-        height / 2 + height / 10);
+        39 * iter, 0,
+        39, 40,
+        width / 2 - width / 20,
+        height / 2 - height / 20,
+        width / 10,
+        height / 10);
 
     });
 
