@@ -1,6 +1,10 @@
 const generateTable = (players, playerID) => {
 
   const compareNumeric = (a, b) => {
+    if (a.kills === b.kills){
+      if (a.deaths > b.deaths) return 1;
+      if (a.deaths < b.deaths) return -1;
+    }
     if (a.kills > b.kills) return -1;
     if (a.kills < b.kills) return 1;
   };
@@ -13,7 +17,7 @@ const generateTable = (players, playerID) => {
   table.className = 'table';
 
   const template = `
-    <caption>Сurrent rating</caption>
+    <caption>Amount players - ${players.length}</caption>
     <tr>
       <th>Name</th>
       <th>Score</th>

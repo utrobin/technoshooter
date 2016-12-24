@@ -114,7 +114,7 @@ export default function createMap(world) {
     }).addTo(world);
   });
   //Конец четырех вышек
-  
+
   //Начало центральных задних(маленьких) блоков
   const heightBlockBack = 16;
   const constPositionBlockBack = 300;

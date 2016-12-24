@@ -3,12 +3,17 @@ import GlitchPass from './glick';
 import createMap from './base/map';
 import generateTable from './base/generateTable';
 import Pew from './pewpew';
+import { safeCoordinates, minRandom, maxRandom } from './base/safeСoordinates';
 
 let pewConfig = {
   canvas: "pew-pew",
   hand: "pew-hand",
   shoot: "pew-shoot"
 };
+
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 let pew = new Pew(pewConfig);
 pew.start();
@@ -106,23 +111,15 @@ class Game {
             document.querySelector('.time-reborn').innerHTML = time;
 
             document.querySelector('.blocker-kill').style.display = 'block';
+            document.querySelector('#pew-pew').style.display = 'none';
             this.killed = true;
 
             setTimeout(() => {
               document.querySelector('.blocker-kill').style.display = 'none';
+              document.querySelector('#pew-pew').style.display = 'block';
               this.killed = false;
 
-              function getRandomNumber(min, max) {
-                return Math.floor(Math.random() * (max - min + 1)) + min;
-              }
-
-              const coordinate = [
-                {x: 344, y: 3, z: -393},
-                {x: 401, y: 3, z: 390},
-                {x: -472, y: 3, z: 408},
-                {x: -449, y: 3, z: -461}
-              ];
-              this.player.position.copy(coordinate[getRandomNumber(0, 3)]);
+              this.player.position.copy(safeCoordinates[getRandomNumber(minRandom, maxRandom)]);
             }, 3100)
           }
 
@@ -176,7 +173,7 @@ class Game {
                   heightSegments: 32
                 },
 
-                mass: 2, // Mass of physics object.
+                mass: 2,
 
                 material: {
                   color: UTILS.$colors.mesh,
@@ -187,6 +184,7 @@ class Game {
               });
 
               this.players[`id${playerId}`].addTo(this.world);
+              generateTable(data.players, this.id);
             }
             else {
               this.players[`id${playerId}`].position.copy(pp);
@@ -210,9 +208,6 @@ class Game {
         console.log('Обрыв соединения');
       }
       console.log('Код: ' + event.code + ' причина: ' + event.reason);
-      // вывод на экран сообщения о закрытии соединения
-      window.header.innerText = 'Соединение закрыто';
-      window.wrapper.hidden = true;
       id = -1;
     };
 
@@ -255,6 +250,7 @@ class Game {
     }, this);
 
     window.addEventListener('keydown', event => {
+      console.log('ggfg');
       if (event.keyCode === 9) {
         event.preventDefault();
         document.querySelector('.leaderboard').style.display = 'block';
@@ -282,11 +278,14 @@ class Game {
           y: this.world.controls.getDirection().y,
           z: this.world.controls.getDirection().z
         };
-
-        // camera = world.controls.getDirection().toArray
       }
 
       let position = {x, y, z};
+
+      if (y > 80) {
+        this.player.position.copy(safeCoordinates[getRandomNumber(minRandom, maxRandom)]);
+      }
+
       if (this.killed) {
         position = {
           x: -9999,
@@ -328,6 +327,8 @@ class Game {
   }
 
   createPlayer() {
+    const coordinate = safeCoordinates[getRandomNumber(minRandom, maxRandom)];
+
     this.player = new WHS.Sphere({
       geometry: {
         radius: 3,
@@ -342,7 +343,7 @@ class Game {
         kind: 'lambert'
       },
 
-      position: [100, 3, 100]
+      position: [coordinate.x, coordinate.y, coordinate.z]
     });
 
     this.player.addTo(this.world);
