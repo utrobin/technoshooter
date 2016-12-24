@@ -73,24 +73,23 @@ export default class Pew {
     let height = canvas.height;
     let error = this.handErrorIter;
 
-    console.log(this.shoots.length);
     this.shoots.forEach((el) => {
       let iter = el.next();
       context.drawImage(shootImg,
         39 * iter, 0,
         39, 40,
-        width / 1.75 - 0.005 * width * Math.cos(error),
-        height / 1.85 - 0.01 * height * (Math.sin(2 * error) - 1),
+        width / 1.8 - 0.005 * width * Math.cos(error),
+        height / 1.75 - 0.01 * height * (Math.sin(2 * error) - 1),
         width / 20,
         height / 20);
 
     });
 
     context.drawImage(img,
-      width / 1.8 - 0.005 * width * Math.cos(error),
-      height / 2 - 0.01 * height * (Math.sin(2 * error) - 1),
-      width / 2,
-      height / 2);
+      width / 1.85 - 0.005 * width * Math.cos(error),
+      height / 1.9 - 0.02 * height * (Math.sin(2 * error) - 1),
+      width / 1.8,
+      height / 1.8);
   }
 
 }
