@@ -1,3 +1,4 @@
+import * as PHYSICS from 'physics-module-ammonext'
 import * as UTILS from './base/global';
 import GlitchPass from './glick';
 import createMap from './base/map';

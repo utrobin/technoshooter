@@ -1,10 +1,14 @@
+import * as PHYSICS from 'physics-module-ammonext';
+
 export const $world = {
-  stats: "fps", // fps, ms, mb or false if not need.
-  autoresize: "window",
+  stats: 'fps', // fps, ms, mb or false if not need.
+  autoresize: 'window',
 
-  gravity: [0, -400, 0],
+  gravity: [0, -100, 0],
 
-
+  camera: {
+    position: [0, 10, 50]
+  },
 
   rendering: {
     background: {
@@ -21,6 +25,41 @@ export const $world = {
   }
 };
 
+export const appDefaults = {
+  camera: {
+    position: new THREE.Vector3(0, 10, 50)
+  },
+  rendering: {
+    bgColor: 0x162129,
+
+    renderer: {
+      antialias: true,
+      shadowmap: {
+        type: THREE.PCFSoftShadowMap
+      }
+    }
+  },
+  physics: {
+    ammo: process.ammoPath
+  }
+};
+
+export const appModules = ( // appModules(camera, rendering);
+  camera = appDefaults.camera,
+  rendering = appDefaults.rendering,
+  physics = appDefaults.physics,
+  useControls = true
+) => (
+  new WHS.BasicAppPreset({camera, rendering})
+    .extend([
+      new PHYSICS.WorldModule(physics),
+      useControls ? new WHS.controls.OrbitModule() : null,
+      new StatsModule()
+    ])
+    .autoresize()
+    .get()
+);
+
 export const $colors = {
   bg: 0x162129,
   plane: 0x447F8B,
@@ -31,13 +70,15 @@ export const $colors = {
 export function addAmbient(world, intensity) {
   new WHS.AmbientLight({
     light: {
-      intensity: intensity
+      intensity
     }
   }).addTo(world);
 }
 
-export function addBasicLights(world, intensity = 0.3, position = [0, 10, 10], distance = 100) {
+export function addBasicLights(world, intensity = 0.5, position = [0, 10, 10], distance = 100, shadowmap) {
   addAmbient(world, 1 - intensity);
+
+  console.log(shadowmap);
 
   return new WHS.PointLight({
     light: {
@@ -45,9 +86,9 @@ export function addBasicLights(world, intensity = 0.3, position = [0, 10, 10], d
       distance
     },
 
-    shadowmap: {
+    shadow: Object.assign({
       fov: 90
-    },
+    }, shadowmap),
 
     position
   }).addTo(world);
@@ -60,18 +101,18 @@ export function addPlane(world, size = 100) {
       height: size
     },
 
-    mass: 0,
+    modules: [
+      new PHYSICS.PlaneModule({
+        mass: 0
+      })
+    ],
 
-    material: {
-      color: $colors.mesh,
-      kind: 'phong',
-      map: WHS.texture('/static/green.jpg', {repeat:{x: 300, y: 300}}),
-    },
+    material: new THREE.MeshPhongMaterial({color: 0x447F8B}),
 
     rotation: {
-      x: - Math.PI / 2
+      x: -Math.PI / 2
     }
-  }).addTo(world)
+  }).addTo(world);
 }
 
 export function addBoxPlane(world, size = 100) {
@@ -82,11 +123,12 @@ export function addBoxPlane(world, size = 100) {
       depth: size
     },
 
-    mass: 0,
+    modules: [
+      new PHYSICS.BoxModule({
+        mass: 0
+      })
+    ],
 
-    material: {
-      color: 0x447F8B,
-      kind: 'phong'
-    }
-  }).addTo(world)
+    material: new THREE.MeshPhongMaterial({color: 0x447F8B})
+  }).addTo(world);
 }
