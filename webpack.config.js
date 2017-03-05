@@ -17,7 +17,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|physics\-module\-ammonext)/,
         plugins: ['transform-runtime'],
         loader: 'babel-loader',
         query: {presets: ['es2015', 'react', 'stage-2']}
@@ -65,5 +65,9 @@ module.exports = {
   ],
   plugins: [
     new ExtractTextPlugin("style.css",  {allChunks: true})
-  ]
+  ],
+  devServer: {
+    contentBase: './public/',
+    publicPath: '/built/'
+  }
 };

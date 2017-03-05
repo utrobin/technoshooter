@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --port 5001",
     "server": "node server.js",
     "test": "node ./public/built/test.js",
     "eslint": "./node_modules/.bin/eslint public/form/*.js",
@@ -82,7 +83,7 @@
     "three-js": "^79.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.1",
+    "webpack-dev-server": "^1.16.3",
     "webpack-shell-plugin": "^0.4.3"
   }
 }

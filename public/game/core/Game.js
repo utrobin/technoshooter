@@ -29,7 +29,7 @@ export default class Game {
           z: 100
         }
       }),
-      rendering: new WHS.app.RenderingModule( ),
+      rendering: new WHS.app.RenderingModule(),
       autoresize: new WHS.app.ResizeModule()
     };
 
@@ -41,7 +41,11 @@ export default class Game {
       camera,
       rendering,
       controls,
-      autoresize
+      autoresize,
+      new PHYSICS.WorldModule({
+        ammo: `${window.location.origin}/static/ammo.js`
+      }),
+      new WHS.controls.OrbitModule()
     ]);
 
     this.addPlane(this.app);
@@ -116,10 +120,10 @@ export default class Game {
         widthSegments: 32,
         heightSegments: 32
       },
-      position: [coordinate.x, coordinate.y, coordinate.z],
+      position: [0, 200, 0], // [coordinate.x, coordinate.y + 200, coordinate.z]
 
       modules: [
-        new PHYSICS.BoxModule({
+        new PHYSICS.SphereModule({
           mass: 3,
           restitution: 0.1
         }),
@@ -136,7 +140,7 @@ export default class Game {
   start() {
     this.app.start();
 
-    console.log(this.player)
+    console.log(1234);
     this.app.applyModule(
       new PHYSICS.FirstPersonModule(this.player, {
         speed: 500,

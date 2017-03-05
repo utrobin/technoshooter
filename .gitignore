@@ -5,3 +5,4 @@ node_modules/
 tags
 *.log
 public/built/
+*.DS_Store
