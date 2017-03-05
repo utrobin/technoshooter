@@ -104,7 +104,7 @@ export function addPlane(world, size = 100) {
     modules: [
       new PHYSICS.PlaneModule({
         mass: 0
-      })
+      }),
     ],
 
     material: new THREE.MeshPhongMaterial({color: 0x447F8B}),
