@@ -1,8 +1,10 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require('webpack');
 const autoPrefixer = require('autoprefixer');
+const alias = require('whs/tools/alias');
 
 module.exports = {
+  devtool: 'source-map',
   entry: {
     bundle: './public/index.js',
     game: './public/game/index.js',
@@ -21,6 +23,20 @@ module.exports = {
         query: {presets: ['es2015', 'react', 'stage-2']}
       },
       {
+        test: /\.jsx?$/,
+        include: /whs/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015'],
+          plugins: [
+            'add-module-exports',
+            'transform-decorators-legacy',
+            'transform-class-properties',
+            'transform-object-rest-spread'
+          ]
+        }
+      },
+      {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss!resolve-url!sass-loader?sourceMap')
       },
@@ -36,7 +52,8 @@ module.exports = {
   },
   resolve: {
     modulesDirectories: ['node_modules'],
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias: alias
   },
   sassLoader: {
     includePaths: ['./**/*.sass']
